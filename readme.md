@@ -1,12 +1,14 @@
 Установка:
-```docker-compose build
+```
+docker-compose build
 docker-compose up
-docker exec -ti app_app_1 php bin/console doctrine:database:create
-docker exec -ti app_app_1 php bin/console doctrine:migrations:migrate --no-interaction
+docker exec -ti notification_app composer install
+docker exec -ti notification_app php bin/console doctrine:database:create
+docker exec -ti notification_app php bin/console doctrine:migrations:migrate --no-interaction
 ```
 Запуск слушателя rabbitmq:
 ```
-docker exec -ti app_app_1 php bin/console rabbitmq:consumer -m 50 notifications
+docker exec -ti notification_app php bin/console rabbitmq:consumer -m 50 notifications
 ```
 
 Web-панель RabbitMQ: 

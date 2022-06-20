@@ -50,10 +50,9 @@ class NotificationsRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('notifications');
 
         if ($subject) {
-            $qb->where('notifications.subject = :subject')
+            $qb->where('notifications.subject LIKE :subject')
                 ->setParameter('subject', '%'.$subject.'%');
         }
-
         if ($notificationStatus) {
             $qb->where('notifications.status = :status')
                 ->setParameter('status', $notificationStatus->value);
